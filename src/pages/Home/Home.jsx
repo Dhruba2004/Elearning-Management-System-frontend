@@ -20,13 +20,6 @@ export default function Home() {
               repudiandae porro fugiat cupiditate deserunt quasi qui vero
               soluta. Nesciunt laborum dolores recusandae qui!lorem3
             </p>
-            <Box sx={{display:"flex"}}>
-              <Button variant="outlined" color="primary" sx={{marginRight:"57rem",marginTop:"1rem"}}>Explore</Button>
-              {/* <Button variant="outlined" color="primary" sx={{marginRight:"12rem"}}>Watch Videos</Button> */}
-            {/* <Link className="bg-transparent px-6 py-2 rounded-lg text-red-900 border border-red-900 mr-[-12rem] flex justify-center items-center" to="/courses">Explore</Link> */}
-            {/* <Link className="bg-transparent px-6 py-2 rounded-lg text-red-900 border border-red-900 flex justify-center items-center text-center" >Watch videos</Link> */}
-
-            </Box>
            
           </div>
 
