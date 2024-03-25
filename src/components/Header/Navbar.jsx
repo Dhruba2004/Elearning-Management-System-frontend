@@ -186,7 +186,7 @@ const mobileLinkVars = {
 const MobileNavLink = ({ display, path }) => {
   return (
     <motion.div variants={mobileLinkVars} initial="initial" animate="open" className="text-4xl uppercase text-black">
-      <Link href={path}>{display}</Link>
+      <Link to={path}href={path}>{display}</Link>
     </motion.div>
   );
 };
