@@ -105,7 +105,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className=" flex lg:gap-[1rem] mr-[2rem]">
-            {session ? <UserButton /> : <SignInButton className="hidden md:block" />}
+            {session ? <UserButton className="hidden md:block" /> : <SignInButton className="hidden md:block" />}
             {/* <Link className="bg-transparent px-4 py-2 rounded-lg text-white border hidden md:block" to="/auth">
               Login
             </Link> */}
