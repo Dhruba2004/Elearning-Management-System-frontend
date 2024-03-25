@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import { IconButton } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
 
 function SignInButton() {
   const clerk = useClerk();
@@ -105,48 +106,62 @@ const Navbar = () => {
             </ul>
           </div>
           <div className=" flex lg:gap-[1rem] mr-[2rem]">
-            {session ? <UserButton className="hidden md:block" /> : <SignInButton className="hidden md:block" />}
+            {session ? (
+              <UserButton className="hidden md:block" />
+            ) : (
+              <SignInButton className="hidden md:block" />
+            )}
             {/* <Link className="bg-transparent px-4 py-2 rounded-lg text-white border hidden md:block" to="/auth">
               Login
             </Link> */}
           </div>
-          <div
-            className="cursor-pointer lg:hidden"
-            onClick={toggleMenu}
-          >
-            <IconButton size="large" color="inherit" className="relative right-[5rem]" >
-            <MenuIcon/>
-
+          <div className="cursor-pointer lg:hidden" onClick={toggleMenu}>
+            <IconButton
+              size="large"
+              color="inherit"
+              className="relative right-[5rem]"
+            >
+              <MenuIcon />
             </IconButton>
-            
           </div>
         </nav>
-        {open && (
-          <div className="fixed left-0 top-0 w-full h-screen bg-[#fff] origin-top text-black p-10">
-            <div className="flex h-full flex-col">
-              <div className="flex justify-between">
-                <h1 className="text-lg text-black">SkillUp</h1>
-                <p
-                  className="cursor-pointer text-md text-black"
-                  onClick={toggleMenu}
-                >
-                  <IconButton size="large" className="md:hidden sm:block">
-                    <CloseIcon />
-                  </IconButton>
-                </p>
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              variants={menuVars}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="fixed left-0 top-0 w-full h-screen bg-[#fff] origin-top text-black p-10"
+            >
+              <div className="flex h-full flex-col">
+                <div className="flex justify-between">
+                  <h1 className="text-lg text-black">SkillUp</h1>
+                  <p
+                    className="cursor-pointer text-md text-black"
+                    onClick={toggleMenu}
+                  >
+                    <IconButton size="large" className="md:hidden sm:block">
+                      <CloseIcon />
+                    </IconButton>
+                  </p>
+                </div>
+                <motion.div variants={containerVars} initial="initial" animate="animate" className="flex flex-col h-[50vh] justify-center items-center gap-7">
+                  {navLinks.map((link, index) => (
+                    <div className="overflow-hidden">
+                      <MobileNavLink
+                      key={index}
+                      display={link.display}
+                      path={link.path}
+                    />
+                      </div>
+                    
+                  ))}
+                </motion.div>
               </div>
-              <div className="flex flex-col h-[50vh] justify-center items-center gap-7">
-                {navLinks.map((link, index) => (
-                  <MobileNavLink
-                    key={index}
-                    display={link.display}
-                    path={link.path}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
@@ -170,8 +185,8 @@ const mobileLinkVars = {
 };
 const MobileNavLink = ({ display, path }) => {
   return (
-    <div className="text-3xl uppercase text-black">
+    <motion.div variants={mobileLinkVars} initial="initial" animate="open" className="text-4xl uppercase text-black">
       <Link href={path}>{display}</Link>
-    </div>
+    </motion.div>
   );
 };
